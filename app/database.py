@@ -2,8 +2,8 @@ import os
 from pymongo import MongoClient
 
 # Configuración de la conexión a MongoDB
-MONGO_DETAILS = os.getenv("//localhost:27017")
-client = MongoClient(MONGO_DETAILS)
+mongo_uri = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+client = MongoClient(mongo_uri)
 
 # Acceso a la base de datos y las colecciones
 db = client["reservas_db"]
