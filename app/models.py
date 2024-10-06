@@ -40,3 +40,13 @@ def get_reservation(id: str):
 
 def get_reservations_by_field(field: str):
     return list(reservations_collection.find({"field": field}))
+
+def get_all_reservations_from_db():
+    reservations = reservations_collection.find()
+    
+    result = []
+    for reservation in reservations:
+        reservation["_id"] = str(reservation["_id"]) 
+        result.append(reservation)
+    
+    return result

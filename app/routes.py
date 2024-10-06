@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from .models import create_timeslot, get_timeslot, create_reservation, get_reservation, get_timeslots_by_field
+from .models import get_all_reservations_from_db , create_timeslot, get_timeslot, create_reservation, get_reservation, get_timeslots_by_field
 from .schemas import TimeSlotCreate, ReservationCreate
 
 router = APIRouter()
@@ -27,3 +27,10 @@ async def get_reservation_endpoint(id: str):
     if not reservation:
         raise HTTPException(status_code=404, detail="Reservation not found")
     return reservation
+
+@router.get("/reservations/", response_model=list)
+async def get_all_reservations():
+    reservations = get_all_reservations_from_db()  
+    if not reservations:
+        raise HTTPException(status_code=404, detail="No reservations found")
+    return reservations
