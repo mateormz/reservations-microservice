@@ -4,17 +4,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:5173",  # URL del frontend
-
-
-]
+# Permitir cualquier origen
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Permitir estos orígenes
-    allow_credentials=True,
-    allow_methods=["*"],  # Permitir todos los métodos (GET, POST, etc.)
+    allow_origins=origins,  # Permitir todos los orígenes
+    allow_credentials=True,  # Si las solicitudes incluyen credenciales (cookies, tokens, etc.)
+    allow_methods=["*"],  # Permitir todos los métodos HTTP (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],  # Permitir todas las cabeceras
 )
 
