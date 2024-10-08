@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",  # URL del frontend
+    "http://reserva-canchas.s3-website-us-east-1.amazonaws.com",  # URL del frontend
 ]
 
 app.add_middleware(
